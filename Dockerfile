@@ -12,4 +12,4 @@ RUN pip3 install -U -r requirements.txt
 RUN mkdir /Encdoder-compress-pro-bot
 WORKDIR /Encdoder-compress-pro-bot
 COPY start.sh /start.sh
-CMD ["/bin/bash", "/start.sh"]
+CMD ["/bin/bash"]
