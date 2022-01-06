@@ -58,7 +58,7 @@ async def button(bot, update: CallbackQuery):
                         await bot.send_message(chat_id, f"**Last Process Cancelled, Bot is Free Now !!** \n\nProcess Done at `{now}`", parse_mode="markdown")
      
 
-                 elif cb_data == "fuckoff":
+                elif cb_data == "fuckoff":
                     try:
                         await update.message.edit_text("Okay! Fine 🤬")
      
