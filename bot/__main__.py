@@ -38,7 +38,7 @@ from bot.plugins.status_message_fn import (
 )
 
 from bot.commands import Command
-from bot.plugins.call_back_button_handler import button
+
 sudo_users = "1666551439" 
 crf.append("30")
 codec.append("libx265")
@@ -117,26 +117,7 @@ if __name__ == "__main__" :
         await message.download(file_name='/app/thumb.jpg')
         await message.reply_text('Thumbnail Added')
         
-    @app.on_message(filters.incoming & filters.command(["cancel", f"cancel@{BOT_USERNAME}"]))
-    async def help_message(app, message):
-        await incoming_cancel_message_f(app, message)
-        
-        
-    @app.on_message(filters.incoming & filters.command(["exec", f"exec@{BOT_USERNAME}"]))
-    async def help_message(app, message):
-        await exec_message_f(app, message)
-        
-    @app.on_message(filters.incoming & filters.command(["eval", f"eval@{BOT_USERNAME}"]))
-    async def help_message(app, message):
-        await eval_message_f(app, message)
-        
-    @app.on_message(filters.incoming & filters.command(["stop", f"stop@{BOT_USERNAME}"]))
-    async def help_message(app, message):
-        await on_task_complete()    
-   
-    @app.on_message(filters.incoming & filters.command(["help", f"help@{BOT_USERNAME}"]))
-    async def help_message(app, message):
-        await message.reply_text("Hi, I am <b>Video Encoder bot</b>\n\n➥ Send me your telegram files\n➥ I will encode them one by one as I have <b>queue feature</b>\n➥ Just send me the jpg/pic and it will be set as your custom thumbnail \n➥ For ffmpeg lovers - u can change crf by /eval crf.insert(0, 'crf value')\n➥ Join @Animes_Encoded for animes \n\n🏷<b>Maintained By: @dark_contacting_bot</b>", quote=True)
+
   
     @app.on_message(filters.incoming & filters.command(["log", f"log@{BOT_USERNAME}"]))
     async def help_message(app, message):
@@ -150,10 +131,7 @@ if __name__ == "__main__" :
       p = f"🌋Pɪɴɢ = {ms}ms"
       await message.reply_text(v + "\n" + p)
 
-    call_back_button_handler = CallbackQueryHandler(
-        button
-    )
-    app.add_handler(call_back_button_handler)
+    
 
     # run the APPlication
     app.run()
