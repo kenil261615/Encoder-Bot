@@ -114,7 +114,7 @@ async def convert_video(video_file, output_directory, total_time, bot, message, 
         try:
           await message.edit_text(
             text=stats,
-            reply_to_message_id=message.message_id
+            reply_to_message_id=message.message_id)
         except:
             pass
         try:
