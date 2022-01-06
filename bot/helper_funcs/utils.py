@@ -18,6 +18,7 @@ def checkKey(dict, key):
     return True
   else:
     return False
+
 async def on_task_complete():
     del data[0]
     if len(data) > 0:
