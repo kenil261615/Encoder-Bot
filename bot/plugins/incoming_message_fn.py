@@ -10,7 +10,6 @@ import os, time, asyncio, json
 from bot.localisation import Localisation
 from bot import (
   DOWNLOAD_LOCATION, 
-  AUTH_USERS,
   LOG_CHANNEL,
   UPDATES_CHANNEL,
   SESSION_NAME,
@@ -429,14 +428,7 @@ async def incoming_compress_message_f(update):
     
 async def incoming_cancel_message_f(bot, update):
   """/cancel command"""
-  #if update.from_user.id != 1391975600 or 888605132 or 1760568371:
-  if update.from_user.id not in AUTH_USERS:      
-        
-    try:
-      await update.message.delete()
-    except:
-      pass
-    return
+     
 
   status = DOWNLOAD_LOCATION + "/status.json"
   if os.path.exists(status):
