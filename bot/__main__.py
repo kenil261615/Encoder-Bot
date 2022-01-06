@@ -29,7 +29,7 @@ from bot.plugins.incoming_message_fn import (
     incoming_cancel_message_f
 )
 
-from Encdoder-compress-pro-bot.commands import Command
+from bot.commands import Command
 from bot.plugins.status_message_fn import (
     eval_message_f,
     exec_message_f,
