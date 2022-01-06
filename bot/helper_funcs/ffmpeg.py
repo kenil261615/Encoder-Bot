@@ -113,10 +113,7 @@ async def convert_video(video_file, output_directory, total_time, bot, message, 
                 f'{progress_str}\n'
         try:
           await message.edit_text(
-            text=stats
-        except:
-            pass
-        try:
+            text=stats,
           await bug.edit_text(text=stats)
         except:
           pass
