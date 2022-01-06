@@ -115,8 +115,7 @@ async def convert_video(video_file, output_directory, total_time, bot, message, 
           await message.edit_text(
             text=stats,
           await bug.edit_text(text=stats)
-        except:
-          pass
+          return
         
     stdout, stderr = await process.communicate()
     r = stderr.decode()
