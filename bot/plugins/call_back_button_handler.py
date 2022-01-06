@@ -56,6 +56,9 @@ async def button(bot, update: CallbackQuery):
                         bst = bst_now.strftime("%d/%m/%Y, %H:%M:%S")
                         now = f"\n{ist} (GMT+05:30)`\n`{bst} (GMT+06:00)"
                         await bot.send_message(chat_id, f"**Last Process Cancelled, Bot is Free Now !!** \n\nProcess Done at `{now}`", parse_mode="markdown")
-                elif cb_data == "fuckoff":
-                        await update.message.edit_text("Okay! Fine 🤬")
+        elif cb_data == "fuckoff":
+            try:
+                await update.message.edit_text("Okay! Fine 🤬")
+            except:
+                pass
      
