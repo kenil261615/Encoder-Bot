@@ -46,7 +46,7 @@ preset.append("veryfast")
 audio_b.append("30k")
 # 🤣
 
-TEXT : "Send Resolution Like This /set_res 720p"
+
 uptime = dt.now()
 
 def ts(milliseconds: int) -> str:
@@ -94,7 +94,7 @@ if __name__ == "__main__" :
                
     @app.on_message(filters.incoming & filters.command(["set_res", f"resolution@{BOT_USERNAME}"]))
     async def changer(app, message):
-            await message.reply_text(TEXT)
+            await message.reply_text(Command.TEXT)
             OUT = f"I will be using : {r} resolution"
             resolution.insert(0, f"{r}")
             await message.reply_text(OUT)
