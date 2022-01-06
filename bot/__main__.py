@@ -30,7 +30,24 @@ from bot.plugins.incoming_message_fn import (
     incoming_cancel_message_f
 )
 
+from pyrogram.types import Message
+from pyrogram.raw import functions, types
+import pyrogram
+from os import path
+import uuid
+import subprocess
+from typing import Union
+import asyncio
+import wget
+from datetime import datetime
 
+import psutil
+from psutil._common import bytes2human
+self_or_contact_filter = filters.create(
+    lambda _, __, message: (message.from_user and message.from_user.is_contact)
+    or message.outgoing
+)
+import wget
 from bot.plugins.status_message_fn import (
     eval_message_f,
     exec_message_f,
