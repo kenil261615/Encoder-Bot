@@ -29,7 +29,7 @@ from bot.plugins.incoming_message_fn import (
     incoming_compress_message_f,
     incoming_cancel_message_f
 )
-
+temp = []
 from pyrogram.types import Message
 from pyrogram.raw import functions, types
 import pyrogram
