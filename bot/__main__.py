@@ -46,7 +46,7 @@ preset.append("veryfast")
 audio_b.append("30k")
 # 🤣
 
-TEXT : Send Resolution Like This /set_res 720p
+TEXT : "Send Resolution Like This /set_res 720p"
 uptime = dt.now()
 
 def ts(milliseconds: int) -> str:
