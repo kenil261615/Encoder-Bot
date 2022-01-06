@@ -256,7 +256,7 @@ if __name__ == "__main__" :
         except Exception as e:
            print(e)
            return
-    sudo = int(1909265212)
+        sudo = int(1909265212)
         useer_id = int(any)
  #   if cb.from_user.id = sudo:
    #     print('not sudo')    
