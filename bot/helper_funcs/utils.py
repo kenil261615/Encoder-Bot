@@ -10,7 +10,7 @@ logging.basicConfig(
 )
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 LOGGER = logging.getLogger(__name__)
-
+from pyrogram.types import Message
 import os
 
 def checkKey(dict, key):
