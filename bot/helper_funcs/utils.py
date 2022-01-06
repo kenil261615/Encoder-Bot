@@ -18,7 +18,18 @@ def checkKey(dict, key):
     return True
   else:
     return False
+async def on_task_complete():
+    del data[0]
+    if len(data) > 0:
+      await add_task(data[0])
 
+async def add_task(message: Message):
+    try:
+        os.system('rm -rf /app/downloads/*')
+        await incoming_compress_message_f(message)
+    except Exception as e:
+        LOGGER.info(e)  
+    await on_task_complete()
 
 def delete_downloads():
   os.system('rm -rf /app/downloads/*')
