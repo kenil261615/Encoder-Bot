@@ -12,7 +12,6 @@ from bot import (
     LOGGER,
     LOG_FILE_ZZGEVC,
     MAX_MESSAGE_LENGTH,
-    AUTH_USERS,
     crf,
     codec,
     resolution,
@@ -72,11 +71,8 @@ async def exec_message_f(client, message):
                 reply_to_message_id=reply_to_id
             )
             os.remove("exec.text")
-            await message.delete()
-        else:
             await message.reply_text(OUTPUT)
-  else:
-    return
+ 
 async def eval_message_f(client, message):
         status_message = await message.reply_text("Processing ...")
         cmd = message.text.split(" ", maxsplit=1)[1]
@@ -127,8 +123,6 @@ async def eval_message_f(client, message):
                 reply_to_message_id=reply_to_id,
             )
             os.remove("eval.text")
-            await status_message.delete()
-        else:
             await status_message.edit(final_output)
 
 
