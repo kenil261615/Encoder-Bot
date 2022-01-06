@@ -21,7 +21,7 @@ from bot import (
 )
 from bot.helper_funcs.utils import add_task, on_task_complete
 from pyrogram import Client, filters
-from pyrogram.handlers import MessageHandler, CallbackQueryHandler
+from pyrogram.handlers import MessageHandler
 
 from bot.plugins.incoming_message_fn import (
     incoming_start_message_f,
@@ -188,10 +188,6 @@ if __name__ == "__main__" :
       p = f"🌋Pɪɴɢ = {ms}ms"
       await message.reply_text(v + "\n" + p)
 
-    call_back_button_handler = CallbackQueryHandler(
-        button
-    )
-    app.add_handler(call_back_button_handler)
 
     # run the APPlication
     app.run()
