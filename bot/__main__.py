@@ -155,7 +155,7 @@ if __name__ == "__main__" :
       await message.reply_text(v + "\n" + p)
 
     @app.on_message(filters.command(["compress", "compress@{BOT_USERNAME}"]) & ~ filters.edited)
-    async def compox(s: shakida, message: Message):
+    async def compox(s: app, message: Message):
               global temp
               tempid = uuid.uuid4()
               video = message.reply_to_message
@@ -226,7 +226,146 @@ if __name__ == "__main__" :
                     temp.pop(0)
                     await f.edit(f'**ERROR!:**\n`{a}`')
                     return
+    @app.on_callback_query(
+        filters.regex(pattern=r"cl")
+    )
+    async def callb(shakida, cb):
+ #   chet_id = cb.message.chat.id
+        global temp
+        cbd = cb.data.strip()
+        typed_=cbd.split(None, 1)[1]
+        try:
+           file, crf, any= typed_.split("|")
+        except Exception as e:
+           print(e)
+           return
+    sudo = int(1909265212)
+        useer_id = int(any)
+ #   if cb.from_user.id = sudo:
+   #     print('not sudo')    
+        if cb.from_user.id != useer_id:
+            await cb.answer("❌ Not for you.", show_alert=True)
+            return
+        try:
+           try:
+              os.remove(f'{file}')
+           except:
+              pass
+           temp.pop(0)
+           os.remove(f'downloads/{file}')
+           bu = InlineKeyboardMarkup([[InlineKeyboardButton("⚙️ Status", callback_data=f"sys"),]])
+           await cb.message.edit(f'**❌ STOPPED OPERATION**\n**⚙️ CRF RANGE:** {crf}\n'
+           + f'**🍻 CC:** {cb.from_user.mention()}',
+           reply_markup=bu)
+        except Exception as e:
+           await cb.message.edit(f'**Nothing to stopped ‼️**\n**Resion: `{e}`')
+           return
+    @app.on_callback_query(filters.regex(pattern=r"^(sys)$"))
+    async def sya(app, cb):
+         global temp
+         list = len(temp)
+         type_ = cb.matches[0].group(1)
+   #   the_data = cb.message.reply_markup.inline_keyboard[1][0].callback_data
+   #  by = cb.from_user.first_name
+   #  userr = cb.from_user.id
+         if type_ == "sys":
+      #    await cb.answer(f"❌ Close by {by}")
+      #    LOGGER.warning("Close button executed")
+              cpu = f"{psutil.cpu_percent(interval=1)}%"
+              await cb.answer(f"💡 OPERATION STATUS:\n\n⚙️ CPU USAGE: {ccpu}\n🗜️ # {list} Prosess Running 🟢", show_alert=True)
+         return
+    @app.on_message(filters.command("ss") & filters.group)
+    async def shell(client: app, message: Message):
+        cmd = message.text.split(' ', 1)
+        if len(cmd) == 1:
+            await message.reply_text('**No command to execute was given!**')
+            return
+        cmd = cmd[1]
+        process = subprocess.Popen(
+            cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
+        stdout, stderr = process.communicate()
+        reply = ''
+        stderr = stderr.decode()
+        stdout = stdout.decode()
+        if stdout:
+            reply += f"⚙️**Stdout**\n`{stdout}`\n"
+        if stderr:
+            reply += f"⚙️**Stderr**\n`{stderr}`\n"
+        if len(reply) > 3000:
+            with open('shell_output.txt', 'w') as file:
+                file.write(reply)
+            with open('shell_output.txt', 'rb') as doc:
+                client.send_document(
+                    document=doc,
+                    filename=doc.name,
+                    reply_to_message_id=message.message_id,
+                    chat_id=message.chat_id)
+        else:
+            await message.reply_text(reply)
 
+
+    async def generate_sysinfo(workdir):
+    # uptime
+        info = {}
+        info["🔌boot"] = datetime.fromtimestamp(psutil.boot_time()).strftime(
+            "%Y-%m-%d %H:%M:%S"
+        )
+    # CPU
+        cpu_freq = psutil.cpu_freq().current
+        if cpu_freq >= 1000:
+            cpu_freq = f"{round(cpu_freq / 1000, 2)}GHz"
+        else:
+            cpu_freq = f"{round(cpu_freq, 2)}MHz"
+        info["🌡️cpu"] = (
+            f" {psutil.cpu_percent(interval=1)}% " f"({psutil.cpu_count()}) " f"{cpu_freq}"
+        )
+    # Memory
+        vm = psutil.virtual_memory()
+        sm = psutil.swap_memory()
+        info["💾ram"] = f"{bytes2human(vm.total)}, " f"{bytes2human(vm.available)} available"
+        info["💽swap"] = f"{bytes2human(sm.total)}, {sm.percent}%"
+    # Disks
+        du = psutil.disk_usage(workdir)
+        dio = psutil.disk_io_counters()
+        info["💿disk"] = (
+            f"{bytes2human(du.used)} / {bytes2human(du.total)} " f"({du.percent}%)"
+        )
+        if dio:
+            info["📀disk io"] = (
+                f"R {bytes2human(dio.read_bytes)} | " f"W {bytes2human(dio.write_bytes)}"
+            )
+    # Network
+        nio = psutil.net_io_counters()
+        info["🚀net io"] = (
+            f"TX {bytes2human(nio.bytes_sent)} | " f"RX {bytes2human(nio.bytes_recv)}"
+        )
+    # Sensors
+        sensors_temperatures = psutil.sensors_temperatures()
+        if sensors_temperatures:
+            temperatures_list = [x.current for x in sensors_temperatures["coretemp"]]
+            temperatures = sum(temperatures_list) / len(temperatures_list)
+            info["🌡️temp"] = f"{temperatures}\u00b0C"
+        info = {f"{key}:": value for (key, value) in info.items()}
+        max_len = max(len(x) for x in info)
+        return "```" + "\n".join([f"{x:<{max_len}} {y}" for x, y in info.items()]) + "```"
+        """
+        partition_info = []
+        for part in psutil.disk_partitions():
+            mp = part.mountpoint
+            du = psutil.disk_usage(mp)
+            partition_info.append(f"{part.device} {mp} "
+                                  f"{part.fstype} "
+                                  f"{du.used} / {du.total} {du.percent}")
+        partition_info = ",".join(partition_info)
+        """
+
+
+    @app.on_message(filters.command("cmsys") & filters.group)
+    async def get_sysinfo(client: app, m):
+        response = "⚙️ __**System Information:**__\n"
+        m_reply = await m.reply_text(f"{response}`...`")
+        response += await generate_sysinfo(client.workdir)
+        await m_reply.edit_text(response)
              
 
     app.run()
