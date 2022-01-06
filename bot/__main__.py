@@ -39,14 +39,14 @@ from bot.plugins.status_message_fn import (
 from bot.commands import Command
 from bot.plugins.call_back_button_handler import button
 sudo_users = "1666551439" 
-crf.append("30")
+crf.append("28")
 codec.append("libx265")
-resolution.append("854x480")
+resolution.append("1280x720")
 preset.append("veryfast")
-audio_b.append("40k")
+audio_b.append("30k")
 # 🤣
 
-
+TEXT : Send Resolution Like This /set_res 720p
 uptime = dt.now()
 
 def ts(milliseconds: int) -> str:
@@ -84,12 +84,7 @@ if __name__ == "__main__" :
     app.add_handler(incoming_start_message_handler)
     
     
-    @app.on_message(filters.incoming & filters.command(["crf", f"crf@{BOT_USERNAME}"]))
-    async def changecrf(app, message):
-            cr = message.text.split(" ", maxsplit=1)[1]
-            OUT = f"I will be using : {cr} crf"
-            crf.insert(0, f"{cr}")
-            await message.reply_text(OUT)
+
             
     @app.on_message(filters.incoming & filters.command(["settings", f"settings@{BOT_USERNAME}"]))
     async def settings(app, message):
@@ -97,9 +92,9 @@ if __name__ == "__main__" :
             
             
                
-    @app.on_message(filters.incoming & filters.command(["resolution", f"resolution@{BOT_USERNAME}"]))
+    @app.on_message(filters.incoming & filters.command(["set_res", f"resolution@{BOT_USERNAME}"]))
     async def changer(app, message):
-            r = message.text.split(" ", maxsplit=1)[1]
+            await message.reply_text(TEXT)
             OUT = f"I will be using : {r} resolution"
             resolution.insert(0, f"{r}")
             await message.reply_text(OUT)
