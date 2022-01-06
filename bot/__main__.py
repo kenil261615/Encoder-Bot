@@ -78,11 +78,7 @@ if __name__ == "__main__" :
     # STATUS ADMIN Command
 
     # START command
-    incoming_start_message_handler = MessageHandler(
-        incoming_start_message_f,
-        filters=filters.command(["start", f"start@{BOT_USERNAME}"])
-    )
-    app.add_handler(incoming_start_message_handler)
+
     
    
 
