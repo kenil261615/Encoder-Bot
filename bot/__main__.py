@@ -90,15 +90,15 @@ if __name__ == "__main__" :
     async def settings(app, message):
             await message.reply_text(f"<b>The current settings will be added to your video file :</b>\n\n<b>Codec</b> : {codec[0]} \n<b>Crf</b> : {crf[0]} \n<b>Resolution</b> : {resolution[0]} \n<b>Preset</b> : {preset[0]} \n<b>Audio Bitrates</b> : {audio_b[0]}")
             
-            
+
                
     @app.on_message(filters.incoming & filters.command(["set_res", f"resolution@{BOT_USERNAME}"]))
     async def changer(app, message):
             await message.reply_text(Command.TEXT)
+            r = message.text.split(" ", maxsplit=1)[1]
             OUT = f"I will be using : {r} resolution"
             resolution.insert(0, f"{r}")
-            await message.reply_text(OUT)
-
+            await message.reply_text(OUT)            
             
                
     @app.on_message(filters.incoming & filters.command(["preset", f"preset@{BOT_USERNAME}"]))
