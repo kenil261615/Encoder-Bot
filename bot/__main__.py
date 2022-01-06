@@ -94,8 +94,8 @@ if __name__ == "__main__" :
                
     @app.on_message(filters.incoming & filters.command(["set_res", f"resolution@{BOT_USERNAME}"]))
     async def changer(app, message):
-            await message.reply_text(Command.TEXT)
-            r = message.text.split(" ", maxsplit=1)[1]
+        
+            r = message.text.split("Command.TEXT", maxsplit=1)[1]
             OUT = f"I will be using : {r} resolution"
             resolution.insert(0, f"{r}")
             return await message.reply_text(OUT)            
