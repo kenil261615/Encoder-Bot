@@ -89,13 +89,7 @@ if __name__ == "__main__" :
              
             
         
-    @app.on_message(filters.incoming & filters.command(["compress", f"compress@{BOT_USERNAME}"]))
-    async def help_message(app, message):
-        query = await message.reply_text("Added to Queue ⏰...\nPlease be patient, Compress will start soon", quote=True)
-        data.append(message.reply_to_message)
-        if len(data) == 1:
-         await query.delete()   
-         await add_task(message.reply_to_message)     
+     
  
     @app.on_message(filters.incoming & filters.command(["restart", f"restart@{BOT_USERNAME}"]))
     async def restarter(app, message):
