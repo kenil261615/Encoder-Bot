@@ -64,7 +64,7 @@ preset.append("veryfast")
 audio_b.append("30k")
 # 🤣
 
-
+from pyrogram.types import InlineKeyboardMarkup
 uptime = dt.now()
 
 def ts(milliseconds: int) -> str:
