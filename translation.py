@@ -9,8 +9,6 @@ Hey {}
 
 I am Telegram Most Powerful Media Encoder Bot
 
-I can Encode Any Video or File in Negligible Quality
-
 Use Help Command to Know How to Use me
 
 Made With 💕 By @Tellybots_4u
