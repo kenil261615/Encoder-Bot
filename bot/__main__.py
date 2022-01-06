@@ -4,7 +4,6 @@ import os
 from bot import (
     APP_ID,
     API_HASH,
-    AUTH_USERS,
     DOWNLOAD_LOCATION,
     LOGGER,
     TG_BOT_TOKEN,
