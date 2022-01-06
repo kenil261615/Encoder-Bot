@@ -5,10 +5,6 @@ from bot.get_cfg import get_config
 
 
 class Command:
-    START = get_config(
-        "COMMAND_START",
-        "start"
-    )
     COMPRESS = get_config(
         "COMMAND_COMPRESS",
         "compress"
