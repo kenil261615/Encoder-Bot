@@ -23,11 +23,6 @@ LOGGER = logging.getLogger(__name__)
 
 async def button(bot, update: CallbackQuery):
     cb_data = update.data
-    try:
-        g = await AdminCheck(bot, update.message.chat.id, update.from_user.id)
-        print(g)
-    except:
-        pass
     LOGGER.info(update.message.reply_to_message.from_user.id)
     if (update.from_user.id == update.message.reply_to_message.from_user.id) or g:
         print(cb_data)
@@ -61,14 +56,9 @@ async def button(bot, update: CallbackQuery):
                         bst = bst_now.strftime("%d/%m/%Y, %H:%M:%S")
                         now = f"\n{ist} (GMT+05:30)`\n`{bst} (GMT+06:00)"
                         await bot.send_message(chat_id, f"**Last Process Cancelled, Bot is Free Now !!** \n\nProcess Done at `{now}`", parse_mode="markdown")
-            else:
-                try:
-                    await update.message.edit_text("You are not allowed to do that 🤭")
-                except:
-                    pass
+     
 
-        elif cb_data == "fuckoff":
-            try:
-                await update.message.edit_text("Okay! Fine 🤬")
-            except:
-                pass
+                        elif cb_data == "fuckoff":
+                    try:
+                        await update.message.edit_text("Okay! Fine 🤬")
+     
