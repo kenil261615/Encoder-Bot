@@ -1,14 +1,5 @@
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/Naysabots/Encdoder-compress-pro-bot)
 ::
-Oof 
-Your Bot Father Setting to put
 ```
-start - Check Bot Alive💋
-help - check For Your Knowledge
-eval - For Checking Cmds
-crf - Your CRF Helper
-codec - Your Codec Setting
-preset - Your Preset Setting
-audio - Your Audio Setting
-settings - Check Current Ffmpeg Code Settings
+start - Check Bot Alive
 ```
