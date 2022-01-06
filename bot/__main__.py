@@ -94,20 +94,15 @@ if __name__ == "__main__" :
                
     @app.on_message(filters.incoming & filters.command(["set_res", f"resolution@{BOT_USERNAME}"]))
     async def changer(app, message):
-        
-            r = message.text.split("Command.TEXT", maxsplit=1)[1]
+            text = await message_reply_text(Command.Text)
+            r = message.text.split(" ", maxsplit=1)[1]
             OUT = f"I will be using : {r} resolution"
             resolution.insert(0, f"{r}")
-            return await message.reply_text(OUT)            
-            
-               
-    @app.on_message(filters.incoming & filters.command(["preset", f"preset@{BOT_USERNAME}"]))
-    async def changepr(app, message):
-            pop = message.text.split(" ", maxsplit=1)[1]
-            OUT = f"I will be using : {pop} preset"
-            preset.insert(0, f"{pop}")
-            await message.reply_text(OUT)
+            await text.delete()
+            return await message.reply_text(OUT)  
 
+            
+  
             
     @app.on_message(filters.incoming & filters.command(["codec", f"codec@{BOT_USERNAME}"]))
     async def changecode(app, message):
