@@ -29,3 +29,4 @@ class Command:
         "COMMAND_UPLOAD_LOG_FILE",
         "log"
     )
+    TEXT = "Send Resolution Like This /set_res 720p"
