@@ -23,7 +23,7 @@ from bot import (
 from bot.helper_funcs.utils import add_task, on_task_complete
 from pyrogram import Client, filters
 from pyrogram.handlers import MessageHandler, CallbackQueryHandler
-
+from translation import Translation
 from bot.plugins.incoming_message_fn import (
     incoming_start_message_f,
     incoming_compress_message_f,
@@ -81,7 +81,13 @@ if __name__ == "__main__" :
 
     
    
-
+    @app.on_message(filters.incoming & filters.command(["start", f"start@{BOT_USERNAME}"]))
+    async def start(bot, update):   
+        await update.reply_text(
+            text=Translation.START_TEXT.format(update.from_user.mention),
+            disable_web_page_preview=True,
+            reply_markup=Translation.START_BUTTONS
+        )
              
             
         
