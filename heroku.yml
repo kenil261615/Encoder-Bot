@@ -1,5 +1,5 @@
 build:
   docker:
-    worker: Procfile
+    worker: Dockerfile
 run:
   worker: bash start.sh
